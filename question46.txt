@@ -1,0 +1,27 @@
+import java.util.*;
+public class question46 {
+    public static List<List<String>> findanagrams(String[] s){
+        List<List<String>> anagramresult=new ArrayList<>();
+        HashMap<String,List<String>> map=new HashMap<>();
+        for(String st:s) {
+            char[] word=st.toCharArray();
+            Arrays.sort(word);
+            String k=new String(word);
+            if(map.containsKey(k)) {
+                map.get(k).add(st);
+            }
+            else {
+                List<String> stList=new ArrayList<>();
+                stList.add(st);
+                map.put(k, stList);
+            }
+        }
+        anagramresult.addAll(map.values());
+        return anagramresult;
+    }
+    public static void main(String[] args) {
+        String[] str= {"eat","tea","tan","ate","nat","bat"};
+        List<List<String>> res=findanagrams(str);
+        res.forEach(r->System.out.println(r+""));
+    }
+}
